@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ****** 1. 修改網頁標題 ****** -->
+    <title>我的作品集 | [你的名字]</title>
+
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS 樣式開始 --- */
+
+        /* 基礎重設與全域設定 */
+        :root {
+            --primary-color: #007bff; /* 主要顏色 (藍色系) */
+            --secondary-color: #343a40; /* 次要顏色 (深灰色) */
+            --background-color: #f8f9fa; /* 背景色 (淺灰) */
+            --text-color: #333; /* 主要文字顏色 */
+            --card-bg: #ffffff; /* 卡片背景色 */
+            --shadow: 0 4px 8px rgba(0,0,0,0.1); /* 陰影效果 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 啟用平滑滾動 */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* 頁首與導覽列 */
+        header {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        header nav ul li a {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 主要區塊通用樣式 */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+             background-color: var(--card-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+        }
+
+        /* 首頁英雄區塊 */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2070') center center/cover no-repeat;
+            color: #fff;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #0056b3;
+        }
+
+        /* 關於我區塊 */
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #about .about-image {
+            flex: 1;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+
+        #about .about-text {
+            flex: 2;
+        }
+
+        /* 作品集區塊 */
+        #portfolio .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-card-content {
+            padding: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .project-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* 聯絡我區塊 */
+        #contact .contact-info {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        #contact .contact-info p {
+            margin-bottom: 1.5rem;
+        }
+        
+        #contact .social-links a {
+            margin: 0 15px;
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+        
+        #contact .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 頁尾 */
+        footer {
+            background: var(--secondary-color);
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+            }
+
+            header nav {
+                margin-top: 10px;
+            }
+
+            #home h1 {
+                font-size: 2.5rem;
+            }
+
+            #home p {
+                font-size: 1.2rem;
+            }
+            
+            #about .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* --- CSS 樣式結束 --- */
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 頁首導覽列 ==================== -->
+    <header>
+        <div class="container">
+            <!-- ****** 2. 修改 Logo 文字 ****** -->
+            <a href="#home" class="logo">[你的名字]</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#about">關於我</a></li>
+                    <li><a href="#portfolio">作品集</a></li>
+                    <li><a href="#contact">聯絡我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== 首頁英雄區塊 ==================== -->
+        <section id="home">
+            <!-- ****** 3. 修改你的主要標題和副標題 ****** -->
+            <h1>你好，我是 [你的名字]</h1>
+            <p>一位充滿熱情的 [你的專業領域，例如：網頁開發者、UI/UX 設計師、攝影師...]</p>
+            <a href="#portfolio" class="cta-button">查看我的作品</a>
+        </section>
+
+        <!-- ==================== 關於我區塊 ==================== -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">關於我</h2>
+                <div class="about-content">
+                    <!-- ****** 4. 更換成你自己的照片 ****** -->
+                    <img src="https://via.placeholder.com/300" alt="個人照片" class="about-image">
+                    <div class="about-text">
+                        <!-- ****** 5. 修改關於我的介紹文字 ****** -->
+                        <h3>你好！很高興認識你。</h3>
+                        <p>
+                            這裡放上你的自我介紹。可以說明你的背景、你的熱情所在，以及你擅長的技能。
+                            例如：我畢業於 [你的學校]，主修 [你的科系]。我對 [你的興趣領域] 有著濃厚的興趣，並持續學習最新的技術與趨勢。
+                        </p>
+                        <p>
+                            我擅長的技能包含：[技能一]、[技能二]、[技能三] 等。我相信好的設計與流暢的使用者體驗能夠創造價值。
+                            期待能有機會與您合作，一同打造出色的產品。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 作品集區塊 ==================== -->
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title">我的作品集</h2>
+                <div class="portfolio-grid">
+
+                    <!-- ****** 6. 修改或複製下方的專案卡片 ****** -->
+
+                    <!-- ====== 專案 1 開始 ====== -->
+                    <div class="project-card">
+                        <!-- 專案圖片，建議尺寸 800x500px -->
+                        <img src="https://via.placeholder.com/800x500" alt="專案 1 圖片">
+                        <div class="project-card-content">
+                            <h3>專案一：[專案名稱]</h3>
+                            <p>[這裡放上專案的簡短描述，說明這個專案是什麼，以及你負責的部分。]</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">查看網站</a>
+                                <a href="#" target="_blank">原始碼</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ====== 專案 1 結束 ====== -->
+
+                    <!-- ====== 專案 2 開始 ====== -->
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/800x500" alt="專案 2 圖片">
+                        <div class="project-card-content">
+                            <h3>專案二：[專案名稱]</h3>
+                            <p>[這裡放上專案的簡短描述，說明這個專案是什麼，以及你負責的部分。]</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">查看網站</a>
+                                <a href="#" target="_blank">原始碼</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ====== 專案 2 結束 ====== -->
+
+                    <!-- ====== 專案 3 開始 ====== -->
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/800x500" alt="專案 3 圖片">
+                        <div class="project-card-content">
+                            <h3>專案三：[專案名稱]</h3>
+                            <p>[這裡放上專案的簡短描述，說明這個專案是什麼，以及你負責的部分。]</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">查看網站</a>
+                                <a href="#" target="_blank">原始碼</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ====== 專案 3 結束 ====== -->
+                    
+                    <!-- 若要新增更多專案，請複製上面 "專案 X 開始" 到 "專案 X 結束" 的整個區塊，並貼在此處 -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 聯絡我區塊 ==================== -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">聯絡我</h2>
+                <div class="contact-info">
+                    <!-- ****** 7. 修改聯絡資訊 ****** -->
+                    <p>我目前正在尋找新的機會，歡迎隨時與我聯繫！</p>
+                    <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                    <div class="social-links">
+                        <!-- 替換成你的社群連結，若沒有可刪除 -->
+                        <a href="#" target="_blank" title="LinkedIn">LinkedIn</a>
+                        <a href="#" target="_blank" title="GitHub">GitHub</a>
+                        <a href="#" target="_blank" title="Behance">Behance</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== 頁尾 ==================== -->
+    <footer>
+        <div class="container">
+            <!-- ****** 8. 修改頁尾版權文字 ****** -->
+            <p>&copy; 2024 [你的名字]. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
